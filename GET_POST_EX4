@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Profile</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Meet Group 2</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="team">
+            <?php
+            $members = [
+                [
+                    "name" => "Richmond Yabut",
+                    "role" => "Group Leader",
+                    "age" => 25,
+                    "birthplace" => "Muntinlupa",
+                    "student_status" => "A 3rd year BSIT Student",
+                    "employment" => "Working Student",
+                    "img" => "richmond.jpg",
+                    "link" => "https://www.instagram.com/zenkii.y?igsh=MTE4c2Z5bmxvdWZh"
+                ],
+                [
+                    "name" => "Rongavilla Almar",
+                    "role" => "Member",
+                    "age" => 20,
+                    "birthplace" => "Muntinlupa",
+                    "student_status" => "A 3rd year BSIT Student",
+                    "employment" => "Working Student",
+                    "img" => "Almar.jpg",
+                    "link" => "https://www.facebook.com/25rongavilla?mibextid=ZbWKwL"
+                ],
+                [
+                    "name" => "Angelo Coronejo",
+                    "role" => "Member",
+                    "age" => 20,
+                    "birthplace" => "Pasig City",
+                    "student_status" => "A 3rd year BSIT Student",
+                    "employment" => "Working Student",
+                    "img" => "Angelo.jpg",
+                    "link" => "https://www.instagram.com/guevarra__angelo?igsh=c2VwcW52bnA3cjJ1"
+                ],
+                [
+                    "name" => "Beyonce Ciprez",
+                    "role" => "Member",
+                    "age" => 20,
+                    "birthplace" => "Muntinlupa",
+                    "student_status" => "A 3rd year BSIT Student",
+                    "employment" => "Fulltime Student",
+                    "img" => "Beyonce.jpg",
+                    "link" => "https://www.instagram.com/yceecey?igsh=MXV6NnRjb3NtOG12Yw%3D%3D&utm_source=qr"
+                ],
+                [
+                    "name" => "Jan Lea Capones",
+                    "role" => "Member",
+                    "age" => 20,
+                    "birthplace" => "Muntinlupa",
+                    "student_status" => "A 3rd year BSIT Student",
+                    "employment" => "Working Student",
+                    "img" => "Lea.jpg",
+                    "link" => "https://www.instagram.com/perty_lea?igsh=MWd6NnZxNGxpeWtnaA=="
+                ]
+                // Other members...
+            ];
+
+            foreach ($members as $member) {
+                echo "
+                <a href='{$member['link']}' class='team-member' target='_blank' onclick='confirmLink(event)'>
+                    <img src='{$member['img']}' alt='Member'>
+                    <h2>{$member['name']}</h2>
+                    <p>{$member['role']}</p>
+                    <p>AGE: {$member['age']}</p>
+                    <p>Birthplace: {$member['birthplace']}</p>
+                    <p>{$member['student_status']}</p>
+                    <p>{$member['employment']}</p>
+                </a>";
+            }
+            ?>
+        </div>
+
+        <!-- Form to collect user data (using POST) -->
+        <h2>Add a new team member</h2>
+        <form action="" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="birthplace">Birthplace:</label>
+            <input type="text" id="birthplace" name="birthplace" required><br>
+            <label for="student_status">Student Status:</label>
+            <input type="text" id="student_status" name="student_status" required><br>
+            
+            <!-- Dropdown for Employment -->
+            <label for="employment">Employment:</label>
+            <select id="employment" name="employment" required>
+                <option value="Working Student">Working Student</option>
+                <option value="Fulltime Student">Fulltime Student</option>
+            </select><br>
+
+            <label for="img">Image:</label>
+            <input type="text" id="img" name="img" required><br>
+            <label for="link">Profile Link:</label>
+            <input type="text" id="link" name="link" required><br>
+            <input type="submit" value="Add Member">
+        </form>
+
+        <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $role = $_POST['role'];
+    $age = $_POST['age'];
+    $birthplace = $_POST['birthplace'];
+    $student_status = $_POST['student_status'];
+    $employment = $_POST['employment'];
+    $img = $_POST['img'];
+    $link = $_POST['link'];
+
+    // Output the new member information in a styled div
+    echo "
+    <div class='new-member-output'>
+        <h3>New member added via POST:</h3>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Role:</strong> $role</p>
+        <p><strong>Age:</strong> $age</p>
+        <p><strong>Birthplace:</strong> $birthplace</p>
+        <p><strong>Student Status:</strong> $student_status</p>
+        <p><strong>Employment:</strong> $employment</p>
+        <p><strong>Profile Link:</strong> <a href='$link' target='_blank' style='color: #0779e4;'>$link</a></p>
+    </div>";
+}
+?>
+
+    </div>
+
+    <!-- Link to external JS file -->
+    <script src="scripts.js"></script>
+</body>
+</html>
